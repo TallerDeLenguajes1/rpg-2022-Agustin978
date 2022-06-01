@@ -1,0 +1,15 @@
+C:\Cursos\Programacion_en_C_UNT\Taller_de_Lenguajes\rpg-2022-Agustin978\JuegoRol\JuegoRol\bin\Debug\net6.0\JuegoRol.exe
+C:\Cursos\Programacion_en_C_UNT\Taller_de_Lenguajes\rpg-2022-Agustin978\JuegoRol\JuegoRol\bin\Debug\net6.0\JuegoRol.deps.json
+C:\Cursos\Programacion_en_C_UNT\Taller_de_Lenguajes\rpg-2022-Agustin978\JuegoRol\JuegoRol\bin\Debug\net6.0\JuegoRol.runtimeconfig.json
+C:\Cursos\Programacion_en_C_UNT\Taller_de_Lenguajes\rpg-2022-Agustin978\JuegoRol\JuegoRol\bin\Debug\net6.0\JuegoRol.dll
+C:\Cursos\Programacion_en_C_UNT\Taller_de_Lenguajes\rpg-2022-Agustin978\JuegoRol\JuegoRol\bin\Debug\net6.0\JuegoRol.pdb
+C:\Cursos\Programacion_en_C_UNT\Taller_de_Lenguajes\rpg-2022-Agustin978\JuegoRol\JuegoRol\obj\Debug\net6.0\JuegoRol.csproj.AssemblyReference.cache
+C:\Cursos\Programacion_en_C_UNT\Taller_de_Lenguajes\rpg-2022-Agustin978\JuegoRol\JuegoRol\obj\Debug\net6.0\JuegoRol.GeneratedMSBuildEditorConfig.editorconfig
+C:\Cursos\Programacion_en_C_UNT\Taller_de_Lenguajes\rpg-2022-Agustin978\JuegoRol\JuegoRol\obj\Debug\net6.0\JuegoRol.AssemblyInfoInputs.cache
+C:\Cursos\Programacion_en_C_UNT\Taller_de_Lenguajes\rpg-2022-Agustin978\JuegoRol\JuegoRol\obj\Debug\net6.0\JuegoRol.AssemblyInfo.cs
+C:\Cursos\Programacion_en_C_UNT\Taller_de_Lenguajes\rpg-2022-Agustin978\JuegoRol\JuegoRol\obj\Debug\net6.0\JuegoRol.csproj.CoreCompileInputs.cache
+C:\Cursos\Programacion_en_C_UNT\Taller_de_Lenguajes\rpg-2022-Agustin978\JuegoRol\JuegoRol\obj\Debug\net6.0\JuegoRol.dll
+C:\Cursos\Programacion_en_C_UNT\Taller_de_Lenguajes\rpg-2022-Agustin978\JuegoRol\JuegoRol\obj\Debug\net6.0\refint\JuegoRol.dll
+C:\Cursos\Programacion_en_C_UNT\Taller_de_Lenguajes\rpg-2022-Agustin978\JuegoRol\JuegoRol\obj\Debug\net6.0\JuegoRol.pdb
+C:\Cursos\Programacion_en_C_UNT\Taller_de_Lenguajes\rpg-2022-Agustin978\JuegoRol\JuegoRol\obj\Debug\net6.0\JuegoRol.genruntimeconfig.cache
+C:\Cursos\Programacion_en_C_UNT\Taller_de_Lenguajes\rpg-2022-Agustin978\JuegoRol\JuegoRol\obj\Debug\net6.0\ref\JuegoRol.dll

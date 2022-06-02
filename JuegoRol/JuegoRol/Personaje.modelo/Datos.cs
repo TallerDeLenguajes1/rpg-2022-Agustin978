@@ -25,18 +25,20 @@ namespace JuegoRol.Personaje.modelo
 
         private int obtenerEdad()
         {
-            int edad = DateTime.Today.AddTicks(-fechaNacimiento.Ticks).Year - 1;
+            int edad = DateTime.Today.AddTicks(-this.fechaNacimiento.Ticks).Year - 1;
             return edad;
         }
-
+        /*
         public bool controlaEdad(DateTime fechaNacimiento)
         {
-            int edad = DateTime.Today.AddTicks(-fechaNacimiento.Ticks).Year - 1;
+            int edad = DateTime.Today.AddTicks(-this.fechaNacimiento.Ticks).Year - 1;
             if(edad > 300)
             {
                 return false;
             }
             return true;
-        }
+        }*/
+
+        public override string ToString() => $"| Nombre: {this.nombre} | Apodo: {this.apodo} | Tipo: {this.apodo} | Edad: {this.edad} | Salud: {this.salud}";
     }
 }

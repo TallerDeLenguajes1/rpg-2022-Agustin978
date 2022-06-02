@@ -21,5 +21,7 @@ namespace JuegoRol.Personaje.modelo
             this.armadura = armadura;
         }
 
+        public override string ToString() => $"| Velocidad: {this.velocidad} | Destreza: {this.destreza} | Fuerza: {this.fuerza} | Nivel: {this.nivel} | Armadura: {this.armadura}";
+
     }
 }

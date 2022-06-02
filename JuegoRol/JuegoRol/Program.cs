@@ -31,7 +31,8 @@ int menu()
 
 Personaje creaPersonajeManual()
 {
-    int opcionTipo = 0;
+    int opcionTipo = 0, salud, velocidad, destreza, fuerza, nivel, armadura;
+    Random rand = new Random();
     DateTime fechaNacimiento;
     string nombre, apodo;
     Console.WriteLine("\n------Sea bienvenido a la creacion de su personaje------\n");
@@ -60,8 +61,16 @@ Personaje creaPersonajeManual()
     do
     {
         Console.WriteLine("*******Ingrese la fecha de nacimineto de su personaje (yy/dd/mm)*******\n");
-
+        fechaNacimiento = DateTime.Parse(Console.ReadLine());
     } while (CompruebaEdad(fechaNacimiento));//A completar :(
+    
+    salud = rand.Next(10,101);
+    velocidad = rand.Next(1,11);
+    destreza = rand.Next(1,6);
+    fuerza = rand.Next(1,11);
+    nivel = rand.Next(1,11);
+    armadura = rand.Next(1,11);
+    
 
     /*
     do
@@ -87,3 +96,5 @@ bool CompruebaEdad(DateTime fechaNace)
     }
     return true;
 }
+
+//int comprueba(int cantidad) => 

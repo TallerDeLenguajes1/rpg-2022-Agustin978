@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JuegoRol.Personaje.modelo
+namespace JuegoRol.Personaje_modelo
 {
     internal class Datos
     {

@@ -40,18 +40,14 @@ namespace JuegoRol.Personaje_modelo
             return true;
         }*/
 
-        public Tipo GetTipo()
-        {
-            return this.tipo;
-        }
-
         //Metodos getter para obtener informacion del personaje
+        public Tipo GetTipo() => this.tipo;
         public string GetNombre() => this.nombre;
         public string GetApodo() => this.apodo;
         public int GetEdad() => this.edad;
         public double GetSalud() => this.salud;
 
 
-        public override string ToString() => $"| Nombre: {this.nombre} | Apodo: {this.apodo} | Tipo: {this.apodo} | Edad: {this.edad} | Salud: {this.salud}";
+        //public override string ToString() => $"| Nombre: {this.nombre} | Apodo: {this.apodo} | Tipo: {this.apodo} | Edad: {this.edad} | Salud: {this.salud}";
     }
 }

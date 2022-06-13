@@ -9,10 +9,11 @@ namespace JuegoRol.Personaje_modelo
     internal class Personaje : Datos
     {
 
-        private double velocidad, destreza, fuerza, nivel, armadura;
+        private double velocidad, destreza, fuerza, armadura;
+        private int nivel;
 
         //Constructor de la clase personaje
-        public Personaje(Tipo tipo, string nombre, string apodo, DateTime fechaNacimiento, double salud, double velocidad, double destreza, double fuerza, double nivel, double armadura) : base(tipo, nombre, apodo, fechaNacimiento, salud)
+        public Personaje(Tipo tipo, string nombre, string apodo, DateTime fechaNacimiento, double salud, double velocidad, double destreza, double fuerza, int nivel, double armadura) : base(tipo, nombre, apodo, fechaNacimiento, salud)
         {
             this.velocidad = velocidad;
             this.destreza = destreza;
@@ -25,13 +26,13 @@ namespace JuegoRol.Personaje_modelo
         public double GetVelocidad() => this.velocidad;
         public double GetDestreza() => this.destreza;
         public double GetFuerza() => this.fuerza;
-        public double GetNivel() => this.nivel;
+        public int GetNivel() => this.nivel;
         public double GetArmadura() => this.armadura;
 
         //Metodos setter para ingresar los datos luego de la pelea
         //public void SetVelocidad()=> 
 
-        public override string ToString() => $"| Velocidad: {this.velocidad} | Destreza: {this.destreza} | Fuerza: {this.fuerza} | Nivel: {this.nivel} | Armadura: {this.armadura}";
+        public override string ToString() => $"| Nombre: {GetNombre()} | Apodo: {GetApodo()} | Tipo: {GetTipo()} | Edad: {GetEdad()} Años| Salud: {GetSalud()} | Velocidad: {this.velocidad} | Destreza: {this.destreza} | Fuerza: {this.fuerza} | Nivel: {this.nivel} | Armadura: {this.armadura}";
 
     }
 }

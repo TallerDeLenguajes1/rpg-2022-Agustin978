@@ -8,26 +8,24 @@
     "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Agustin\\.nuget\\packages\\": {}
+    "C:\\Users\\Alumno\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Cursos\\Programacion_en_C_UNT\\Taller_de_Lenguajes\\rpg-2022-Agustin978\\JuegoRol\\JuegoRol\\JuegoRol.csproj",
+      "projectUniqueName": "C:\\Repos\\rpg-2022-Agustin978\\JuegoRol\\JuegoRol\\JuegoRol.csproj",
       "projectName": "JuegoRol",
-      "projectPath": "C:\\Cursos\\Programacion_en_C_UNT\\Taller_de_Lenguajes\\rpg-2022-Agustin978\\JuegoRol\\JuegoRol\\JuegoRol.csproj",
-      "packagesPath": "C:\\Users\\Agustin\\.nuget\\packages\\",
-      "outputPath": "C:\\Cursos\\Programacion_en_C_UNT\\Taller_de_Lenguajes\\rpg-2022-Agustin978\\JuegoRol\\JuegoRol\\obj\\",
+      "projectPath": "C:\\Repos\\rpg-2022-Agustin978\\JuegoRol\\JuegoRol\\JuegoRol.csproj",
+      "packagesPath": "C:\\Users\\Alumno\\.nuget\\packages\\",
+      "outputPath": "C:\\Repos\\rpg-2022-Agustin978\\JuegoRol\\JuegoRol\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Agustin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Alumno\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {

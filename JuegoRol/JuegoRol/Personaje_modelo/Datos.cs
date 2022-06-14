@@ -48,6 +48,9 @@ namespace JuegoRol.Personaje_modelo
         public double GetSalud() => this.salud;
 
 
+        //Metodos Setter
+        public double SetSalud(double nuevaSalud) => this.salud = nuevaSalud;
+
         //public override string ToString() => $"| Nombre: {this.nombre} | Apodo: {this.apodo} | Tipo: {this.apodo} | Edad: {this.edad} | Salud: {this.salud}";
     }
 }

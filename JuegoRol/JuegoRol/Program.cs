@@ -49,6 +49,20 @@ int main()
 
 
     Console.WriteLine($"El personaje seleccionado es:\n{personajes[seleccionaPersonaje()].ToString()}");
+
+    for(int i = 0; i<5; i++)
+    {
+        peleas(0);
+    }
+    /*
+    do
+    {
+        Personaje personajeElimina = personajes[seleccionaPersonaje()-1];
+        //Eliminar
+        personajes.Remove(personajeElimina);
+        //seleccionaPersonaje();
+    }while(personajes.Any());
+    */
     
 
     return 0;
@@ -261,13 +275,51 @@ int seleccionaPersonaje()
 void peleas(int personajeSeleccionado)
 {
     Random rand = new Random();
+    double danioProvocado;
     int peleador1, peleador2;
-    peleador1 = rand.Next(0,11); //Selecciona un personaje aleatorio del listado
+    peleador1 = rand.Next(0,personajes.Count()+1); //Selecciona un personaje aleatorio del listado
     do
     {
         peleador2 = rand.Next(0, 11);
     } while (peleador1 == peleador2);
 
+    for(int i = 0; i < 6; i++)
+    {
+        if(i%2 == 0)
+        {
+            danioProvocado = ((personajes[peleador1].valorAtaque() * personajes[peleador1].efectividaDisparo()) - personajes[peleador2].poderDefensa()) / personajes[peleador1].maximoDanio;
+            danioProvocado = danioProvocado * 100;
+            personajes[peleador2].actualizaSalud(danioProvocado);
+
+            if(personajes[peleador2].GetSalud() < 0)
+            {
+                Console.WriteLine($"Campeon de la pelea:\n{personajes[peleador1].ToString()}");
+                eliminaPersonaje(peleador2);
+            } 
+        }else
+        {
+            danioProvocado = ((personajes[peleador2].valorAtaque() * personajes[peleador2].efectividaDisparo()) - personajes[peleador1].poderDefensa()) / personajes[peleador1].maximoDanio;
+            danioProvocado = danioProvocado * 100;
+            personajes[peleador1].actualizaSalud(danioProvocado);
+
+            if(personajes[peleador1].GetSalud() < 0)
+            {
+                Console.WriteLine($"Campeon de la pelea:\n{personajes[peleador2].ToString()}");
+                eliminaPersonaje(peleador1);
+            } 
+        }
+    }
+
+    if(personajes[peleador1].GetSalud() > personajes[peleador2].GetSalud())
+    {
+        Console.WriteLine($"Campeon de la pelea:\n{personajes[peleador1].ToString()}");
+        eliminaPersonaje(peleador2);
+    }else
+    {
+        Console.WriteLine($"Campeon de la pelea:\n{personajes[peleador2].ToString()}");
+        eliminaPersonaje(peleador1);
+    }
+    /*
     if(peleador1 == personajeSeleccionado || peleador2 == personajeSeleccionado)
     {
         if(peleador1 == personajeSeleccionado)
@@ -279,6 +331,11 @@ void peleas(int personajeSeleccionado)
             //Insertar funcion para que el usuario pelee
         }
     }
+    */
+}
 
-
+void eliminaPersonaje(int personajeElimina)
+{
+    Personaje personajeAEliminar = personajes[personajeElimina];
+    personajes.Remove(personajeAEliminar);
 }

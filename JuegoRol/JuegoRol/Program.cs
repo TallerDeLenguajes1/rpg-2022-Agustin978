@@ -1,5 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using JuegoRol.Personaje_modelo;
+using JuegoRol.funciones_personaje;
+using Newtonsoft.Json;
 
 List<Personaje> personajes = new List<Personaje>();
 //List<Personaje> PersonajesContinuan = new List<Personaje>();
@@ -9,13 +11,16 @@ int main()
 {
     int peleador1, peleador2, numeroCombate = 0;
     Personaje personajeAleatorio;
+    string path = @"C:\Cursos\Programacion_en_C_UNT\Taller_de_Lenguajes\rpg-2022-Agustin978\JuegoRol\JuegoRol\jugadores";
+    string formato = ".json";
+    string personajesAlmacenados;
     Console.WriteLine("\n============Torneo de Rol============\n");
     Console.WriteLine("Juego en el que cada uno de los personajes de este epico mundo\n lucharan a muerte en diferentes rondas por avanzar y ser consagrados\n como el gran campeon del torneo.");
     Console.WriteLine("\n\nMODALIDAD DE JUEGO: El mismo se basa en un conjunto de peleas por tres turnos cada oponente,\n en la cual quien gane recibira mejoras considerables y avnazara en el torneo,\n" +
                         "mientras que el perdedor sera elimindo completamente del torneo.\n");
 
 
-    if (menu() == 1)
+    if (menu(path, formato) == 1)
     {
         Personaje personajePersonal = creaPersonajeManual();
         //Personaje personajeAleatorio;
@@ -33,7 +38,7 @@ int main()
         Console.WriteLine("Los personajes se crearon correctamente.");
 
     }
-    else
+    else if(menu(path, formato) == 0)
     {
         //Personaje personajeAleatorio;
         while (personajes.Count() < 10)
@@ -46,7 +51,15 @@ int main()
             //Console.WriteLine(personajes.Count());
         }
         Console.WriteLine("Los personajes se crearon correctamente.");
+    }else
+    {
+        //Colocar funciones para cargar los personajes desde el archivo json
+        personajesAlmacenados = Funciones.GetObjectJsonFromFile(path, formato);
+        cargaDesdeJson(personajesAlmacenados);
     }
+
+    //Almaceno los personajes creados en archivo jugadores.json
+    Funciones.SerializeObjectJson(personajes, path, formato);
 
     Console.WriteLine("\n********Personajes en combate********\n");
     muestraPersonajes();
@@ -82,16 +95,20 @@ int main()
     return 0;
 }
 
-int menu()
+int menu(string path, string formato)
 {
     int opcion;
     Console.WriteLine("********Taberna de la Eleccion********\n");
     do{
         Console.WriteLine("0-> Desea que el programa le escoja aleatoriamente la creacion del personaje.\n");
         Console.WriteLine("1-> Desea crear manualmente a su personaje.\n");
+        if(File.Exists(path+formato))
+        {
+            Console.WriteLine("2-> Desea que se carguen los personajes almacenados anteriormente.\n");
+        }
         Console.WriteLine("Ingrese una opcion:");
         opcion = Convert.ToInt32(Console.ReadLine());
-    }while(opcion < 0 || opcion > 1);
+    }while(opcion < 0 || opcion > 2);
     return opcion;
 }
 
@@ -424,4 +441,14 @@ void aplicaBonus(Personaje campeon)
 
     velocidadMejorada = campeon.GetVelocidad() + (campeon.GetVelocidad() * 10) / 100; //Tiene un incremento del 10% en la velocidad y por lo tanto un pequeño incremento al defenderse
     campeon.SetVelocidad(velocidadMejorada);
+}
+
+void cargaDesdeJson(string elementosJson)
+{
+    List<Personaje> lista = JsonConvert.DeserializeObject<List<Personaje>>(elementosJson);
+    foreach(var elemento in lista)
+    {
+        personajes.Add(elemento);
+    }
+    lista.Clear(); //Libero la memoria que use para crear la lista
 }

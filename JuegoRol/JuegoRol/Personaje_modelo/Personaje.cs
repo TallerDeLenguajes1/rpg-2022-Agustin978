@@ -9,9 +9,9 @@ namespace JuegoRol.Personaje_modelo
     internal class Personaje : Datos
     {
 
-        private double velocidad, destreza, fuerza, armadura, PD;
+        public double velocidad, destreza, fuerza, armadura, PD;
         public int maximoDanio = 50000;
-        private int nivel;
+        public int nivel;
 
         //Constructor de la clase personaje
         public Personaje(Tipo tipo, string nombre, string apodo, DateTime fechaNacimiento, double salud, double velocidad, double destreza, double fuerza, int nivel, double armadura) : base(tipo, nombre, apodo, fechaNacimiento, salud)

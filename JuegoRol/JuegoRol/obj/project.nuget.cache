@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "v2mPh93CtMiMPHuKEn2TZoYXDUN4HIBc8WeiMtFTCDoBLC9Uxx99YUDy1sl6i9jlnEFvlzAQ5cumgfViCc00OQ==",
+  "dgSpecHash": "5SOvYbKntlXvcvO48wYRS/1HdYI9Ssq6hoJkUQGiHai7pAEqX9BMiNZqoBLrjbJJF3cSUJnzZ3G1Uyq8JAdUdA==",
   "success": true,
   "projectFilePath": "C:\\Cursos\\Programacion_en_C_UNT\\Taller_de_Lenguajes\\rpg-2022-Agustin978\\JuegoRol\\JuegoRol\\JuegoRol.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Agustin\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": []
 }

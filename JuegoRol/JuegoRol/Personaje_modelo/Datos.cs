@@ -8,11 +8,11 @@ namespace JuegoRol.Personaje_modelo
 {
     internal class Datos
     {
-        Tipo tipo;
-        string nombre, apodo;
-        DateTime fechaNacimiento;
-        int edad;
-        double salud;
+        public Tipo tipo;
+        public string nombre, apodo;
+        public DateTime fechaNacimiento;
+        public int edad;
+        public double salud;
 
         public Datos(Tipo tipo, string nombre, string apodo, DateTime fechaNacimiento, double salud)
         {

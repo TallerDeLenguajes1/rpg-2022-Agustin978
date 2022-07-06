@@ -2,17 +2,18 @@
 using JuegoRol.Personaje_modelo;
 
 List<Personaje> personajes = new List<Personaje>();
+//List<Personaje> PersonajesContinuan = new List<Personaje>();
 main();
 
 int main()
 {
+    int peleador1, peleador2, numeroCombate = 0;
+    Personaje personajeAleatorio;
     Console.WriteLine("\n============Torneo de Rol============\n");
     Console.WriteLine("Juego en el que cada uno de los personajes de este epico mundo\n lucharan a muerte en diferentes rondas por avanzar y ser consagrados\n como el gran campeon del torneo.");
     Console.WriteLine("\n\nMODALIDAD DE JUEGO: El mismo se basa en un conjunto de peleas por tres turnos cada oponente,\n en la cual quien gane recibira mejoras considerables y avnazara en el torneo,\n" +
                         "mientras que el perdedor sera elimindo completamente del torneo.\nLe deseamos la mejor de las suertes!!!");
 
-
-    Personaje personajeAleatorio;
 
     if ( menu() == 1)
     {
@@ -48,12 +49,21 @@ int main()
     }
 
 
-    Console.WriteLine($"El personaje seleccionado es:\n{personajes[seleccionaPersonaje()].ToString()}");
-
-    for(int i = 0; i<5; i++)
+    //Console.WriteLine($"El personaje seleccionado es:\n{personajes[seleccionaPersonaje()].ToString()}");
+    Console.WriteLine(personajes.Count);
+    while (personajes.Count() > 1)
     {
-        peleas(0);
+        numeroCombate++;
+        peleador1 = seleccionaPersonajeAPelear();
+        do
+        {
+            peleador2 = seleccionaPersonajeAPelear();
+        } while (peleador1 == peleador2);
+        Combates(personajes[peleador1], personajes[peleador2], numeroCombate);
     }
+
+    Console.WriteLine("Campeon final de las peleas:\n");
+    muestraPersonajes();
     /*
     do
     {
@@ -251,10 +261,10 @@ int controlaPersonaje(Personaje personajeControla)
     }
     return 0;
 }
-
+/*
 int seleccionaPersonaje()
 {
-    int contador = 0;
+    int contador = 1;
 
     do
     {
@@ -266,76 +276,110 @@ int seleccionaPersonaje()
             Console.WriteLine($"{++contador})-> " + personaje.ToString() + "\n");
         }
         contador = Convert.ToInt32(Console.ReadLine());
-    } while (contador <= 0);
+    } while (contador <= 1);
 
     return contador;
 }
+*/
+void muestraPersonajes()
+{
+    //Console.Clear();
+    Console.WriteLine("\n********Personajes en combate********");
+    Console.WriteLine("\n\n");
+    foreach (var personaje in personajes)
+    {
+        Console.WriteLine($"-> " + personaje.ToString() + "\n");
+    }
+}
 
-//Funciones para las peleas aleatorias
-void peleas(int personajeSeleccionado)
+void muestraPersonaje(Personaje personajeMuestra)
+{
+    Console.WriteLine("\n");
+    personajeMuestra.ToString();
+}
+
+int seleccionaPersonajeAPelear()
 {
     Random rand = new Random();
+    int peleador = rand.Next(0, personajes.Count()); //Selecciona un personaje aleatorio del listado
+    return peleador;
+}
+
+//Funciones para las peleas aleatorias
+void Combates(Personaje peleador1, Personaje peleador2, int numeroPelea)
+{
     double danioProvocado;
+    /*
+    Random rand = new Random();
     int peleador1, peleador2;
     peleador1 = rand.Next(0,personajes.Count()+1); //Selecciona un personaje aleatorio del listado
     do
     {
         peleador2 = rand.Next(0, 11);
     } while (peleador1 == peleador2);
+    */
 
     for(int i = 0; i < 6; i++)
     {
         if(i%2 == 0)
         {
-            danioProvocado = ((personajes[peleador1].valorAtaque() * personajes[peleador1].efectividaDisparo()) - personajes[peleador2].poderDefensa()) / personajes[peleador1].maximoDanio;
-            danioProvocado = danioProvocado * 100;
-            personajes[peleador2].actualizaSalud(danioProvocado);
+            danioProvocado = danioProvoca(peleador1, peleador2);
+            peleador2.actualizaSalud(danioProvocado);
 
-            if(personajes[peleador2].GetSalud() < 0)
+            if(peleador2.GetSalud() < 0)
             {
-                Console.WriteLine($"Campeon de la pelea:\n{personajes[peleador1].ToString()}");
+                Console.WriteLine($"Campeon de la pelea {numeroPelea}:\n");
+                muestraPersonaje(peleador1);
+                //PersonajesContinuan.Add(peleador1); //Agrego a una nueva lista a los que van ganando
+                //eliminaPersonaje(peleador1); //Elimino de la lista de peleadores pendientes tanto al campeon como al perdedor
                 eliminaPersonaje(peleador2);
             } 
         }else
         {
-            danioProvocado = ((personajes[peleador2].valorAtaque() * personajes[peleador2].efectividaDisparo()) - personajes[peleador1].poderDefensa()) / personajes[peleador1].maximoDanio;
-            danioProvocado = danioProvocado * 100;
-            personajes[peleador1].actualizaSalud(danioProvocado);
+            danioProvocado = danioProvoca(peleador2, peleador1);
+            peleador1.actualizaSalud(danioProvocado);
 
-            if(personajes[peleador1].GetSalud() < 0)
+            if(peleador1.GetSalud() < 0)
             {
-                Console.WriteLine($"Campeon de la pelea:\n{personajes[peleador2].ToString()}");
+                Console.WriteLine($"Campeon de la pelea {numeroPelea}:\n");
+                muestraPersonaje(peleador2);
+                //PersonajesContinuan.Add(peleador2); //Agrego a una nueva lista a los que van ganando
+                //eliminaPersonaje(peleador2); //Elimino de la lista de peleadores pendientes tanto al campeon como al perdedor
                 eliminaPersonaje(peleador1);
-            } 
+            }
         }
     }
 
-    if(personajes[peleador1].GetSalud() > personajes[peleador2].GetSalud())
+    if(peleador1.GetSalud() > peleador2.GetSalud())
     {
-        Console.WriteLine($"Campeon de la pelea:\n{personajes[peleador1].ToString()}");
+        Console.WriteLine($"Campeon de la pelea {numeroPelea}:\n");
+        muestraPersonaje(peleador1);
+        //PersonajesContinuan.Add(peleador1);
+        //eliminaPersonaje(peleador1);
         eliminaPersonaje(peleador2);
+    }else if(peleador1.GetSalud() < peleador2.GetSalud())
+    {
+        Console.WriteLine($"Campeon de la pelea {numeroPelea}:\n");
+        muestraPersonaje(peleador2);
+        //PersonajesContinuan.Add(peleador2);
+        //eliminaPersonaje(peleador2);
+        eliminaPersonaje(peleador1);
     }else
     {
-        Console.WriteLine($"Campeon de la pelea:\n{personajes[peleador2].ToString()}");
-        eliminaPersonaje(peleador1);
+        Console.WriteLine("\n******Se produjo un empate*****\n");
+        Console.WriteLine("Los competidores volveran a realizar los combates hasta que uno sea derrotado >:-)");
+        Combates(peleador1, peleador2, numeroPelea);
     }
-    /*
-    if(peleador1 == personajeSeleccionado || peleador2 == personajeSeleccionado)
-    {
-        if(peleador1 == personajeSeleccionado)
-        {
-            //Insertar funcion para que el usuario pelee
-        }
-        else
-        {
-            //Insertar funcion para que el usuario pelee
-        }
-    }
-    */
 }
 
-void eliminaPersonaje(int personajeElimina)
+double danioProvoca(Personaje DaGolpe, Personaje RecibeGolpe)
 {
-    Personaje personajeAEliminar = personajes[personajeElimina];
-    personajes.Remove(personajeAEliminar);
+    double danio = ((DaGolpe.valorAtaque() * DaGolpe.efectividaDisparo()) - RecibeGolpe.poderDefensa()) / DaGolpe.maximoDanio;
+    return danio * 100;
+}
+
+void eliminaPersonaje(Personaje personajeElimina)
+{
+    //Personaje personajeAEliminar = personajes[personajeElimina];
+    personajes.Remove(personajeElimina);
 }

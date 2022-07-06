@@ -49,7 +49,7 @@ namespace JuegoRol.Personaje_modelo
 
 
         //Metodos Setter
-        public double SetSalud(double nuevaSalud) => this.salud = nuevaSalud;
+        public double SetSalud(double nuevaSalud) => this.salud = Math.Round(nuevaSalud,3);
 
         //public override string ToString() => $"| Nombre: {this.nombre} | Apodo: {this.apodo} | Tipo: {this.apodo} | Edad: {this.edad} | Salud: {this.salud}";
     }

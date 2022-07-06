@@ -33,11 +33,13 @@ namespace JuegoRol.Personaje_modelo
         public double GetArmadura() => this.armadura;
 
         //Metodos setter para ingresar los datos luego de la pelea
-        //public void SetVelocidad() => 
+        public double SetFuerza(double fuerzaActualizada) => this.fuerza = Math.Round(fuerzaActualizada,3);
+        public int SetNivel(int aumentaNivel) => this.nivel = aumentaNivel;
+        public double SetVelocidad(double aumentaVelocidad) => this.velocidad = Math.Round(aumentaVelocidad,3);
 
         //Funciones para pelea
 
-        public double poderDisparo() => this.destreza * this.fuerza * this.nivel;
+        public double poderDisparo() => Math.Round(this.destreza * this.fuerza * this.nivel , 3);
 
         public int efectividaDisparo()
         {
@@ -46,8 +48,8 @@ namespace JuegoRol.Personaje_modelo
             return efectividad;
         }
 
-        public double valorAtaque() => this.PD * this.efectividaDisparo();
-        public double poderDefensa() => this.armadura * this.velocidad;
+        public double valorAtaque() => Math.Round(this.PD * this.efectividaDisparo(),3);
+        public double poderDefensa() => Math.Round(this.armadura * this.velocidad,3);
 
         public void actualizaSalud(double danioRecibido)
         {

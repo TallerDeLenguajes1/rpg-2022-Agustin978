@@ -12,10 +12,10 @@ int main()
     Console.WriteLine("\n============Torneo de Rol============\n");
     Console.WriteLine("Juego en el que cada uno de los personajes de este epico mundo\n lucharan a muerte en diferentes rondas por avanzar y ser consagrados\n como el gran campeon del torneo.");
     Console.WriteLine("\n\nMODALIDAD DE JUEGO: El mismo se basa en un conjunto de peleas por tres turnos cada oponente,\n en la cual quien gane recibira mejoras considerables y avnazara en el torneo,\n" +
-                        "mientras que el perdedor sera elimindo completamente del torneo.\nLe deseamos la mejor de las suertes!!!");
+                        "mientras que el perdedor sera elimindo completamente del torneo.\n");
 
 
-    if ( menu() == 1)
+    if (menu() == 1)
     {
         Personaje personajePersonal = creaPersonajeManual();
         //Personaje personajeAleatorio;
@@ -48,9 +48,10 @@ int main()
         Console.WriteLine("Los personajes se crearon correctamente.");
     }
 
+    Console.WriteLine("\n********Personajes en combate********\n");
+    muestraPersonajes();
+    Console.WriteLine("\n\n");
 
-    //Console.WriteLine($"El personaje seleccionado es:\n{personajes[seleccionaPersonaje()].ToString()}");
-    Console.WriteLine(personajes.Count);
     while (personajes.Count() > 1)
     {
         numeroCombate++;
@@ -59,10 +60,13 @@ int main()
         {
             peleador2 = seleccionaPersonajeAPelear();
         } while (peleador1 == peleador2);
+        //Console.WriteLine("\n***Personajes que pelearan***\n");
+        //muestraPersonaje(personajes[peleador1]);
+        //muestraPersonaje(personajes[peleador2]);
         Combates(personajes[peleador1], personajes[peleador2], numeroCombate);
     }
 
-    Console.WriteLine("Campeon final de las peleas:\n");
+    Console.WriteLine("\n\n=========================Campeon final de los combates=========================\n");
     muestraPersonajes();
     /*
     do
@@ -151,7 +155,7 @@ Personaje creaPersonajeManual()
         }
     } while (CompruebaEdad(fechaNacimiento));
 
-    salud = Math.Round(rand.NextDouble() * 90 + 10, 3);
+    salud = 100;
     velocidad = Math.Round(rand.NextDouble() * 9 + 1, 3);
     destreza = Math.Round(rand.NextDouble() * 4 + 1, 3);
     fuerza = Math.Round(rand.NextDouble() * 9 + 1, 3);
@@ -195,7 +199,7 @@ Personaje CreaPersonajeAleatorio()
     tipo = (Tipo)opcionTipo;
     nombre = (Nombre)opcionNombre;
     apodo = (Apodo)opcionApodo;
-    salud = Math.Round(rand.NextDouble() * 90 + 10, 3);
+    salud = 100.0;
     velocidad = Math.Round(rand.NextDouble() * 9 + 1, 3);
     destreza = Math.Round(rand.NextDouble() * 4 + 1, 3);
     fuerza = Math.Round(rand.NextDouble() * 9 + 1, 3);
@@ -284,8 +288,7 @@ int seleccionaPersonaje()
 void muestraPersonajes()
 {
     //Console.Clear();
-    Console.WriteLine("\n********Personajes en combate********");
-    Console.WriteLine("\n\n");
+    Console.WriteLine("\n");
     foreach (var personaje in personajes)
     {
         Console.WriteLine($"-> " + personaje.ToString() + "\n");
@@ -295,7 +298,7 @@ void muestraPersonajes()
 void muestraPersonaje(Personaje personajeMuestra)
 {
     Console.WriteLine("\n");
-    personajeMuestra.ToString();
+    Console.WriteLine($"-> {personajeMuestra.ToString()}");
 }
 
 int seleccionaPersonajeAPelear()
@@ -326,45 +329,63 @@ void Combates(Personaje peleador1, Personaje peleador2, int numeroPelea)
             danioProvocado = danioProvoca(peleador1, peleador2);
             peleador2.actualizaSalud(danioProvocado);
 
-            if(peleador2.GetSalud() < 0)
+            if(peleador2.GetSalud() <= 0)
             {
-                Console.WriteLine($"Campeon de la pelea {numeroPelea}:\n");
+                Console.WriteLine($"\n=============Campeon de la pelea {numeroPelea}=============\n");
                 muestraPersonaje(peleador1);
+                aplicaBonus(peleador1);
                 //PersonajesContinuan.Add(peleador1); //Agrego a una nueva lista a los que van ganando
                 //eliminaPersonaje(peleador1); //Elimino de la lista de peleadores pendientes tanto al campeon como al perdedor
+                Console.WriteLine("\n***Perdedor del combate***");
+                muestraPersonaje(peleador2);
                 eliminaPersonaje(peleador2);
+                return;
             } 
         }else
         {
             danioProvocado = danioProvoca(peleador2, peleador1);
             peleador1.actualizaSalud(danioProvocado);
 
-            if(peleador1.GetSalud() < 0)
+            if(peleador1.GetSalud() <= 0)
             {
-                Console.WriteLine($"Campeon de la pelea {numeroPelea}:\n");
+                Console.WriteLine($"\n=============Campeon de la pelea {numeroPelea}=============\n");
                 muestraPersonaje(peleador2);
+                aplicaBonus(peleador2);
                 //PersonajesContinuan.Add(peleador2); //Agrego a una nueva lista a los que van ganando
                 //eliminaPersonaje(peleador2); //Elimino de la lista de peleadores pendientes tanto al campeon como al perdedor
+                Console.WriteLine("\n***Perdedor del combate***");
+                muestraPersonaje(peleador1);
                 eliminaPersonaje(peleador1);
+                return;
             }
         }
     }
 
     if(peleador1.GetSalud() > peleador2.GetSalud())
     {
-        Console.WriteLine($"Campeon de la pelea {numeroPelea}:\n");
+        Console.WriteLine($"\n=============Campeon de la pelea {numeroPelea}=============\n");
         muestraPersonaje(peleador1);
+        aplicaBonus(peleador1);
         //PersonajesContinuan.Add(peleador1);
         //eliminaPersonaje(peleador1);
-        eliminaPersonaje(peleador2);
-    }else if(peleador1.GetSalud() < peleador2.GetSalud())
-    {
-        Console.WriteLine($"Campeon de la pelea {numeroPelea}:\n");
+        Console.WriteLine("\n***Perdedor del combate***");
         muestraPersonaje(peleador2);
+        eliminaPersonaje(peleador2);
+        return;
+    }
+    else if(peleador1.GetSalud() < peleador2.GetSalud())
+    {
+        Console.WriteLine($"\n=============Campeon de la pelea {numeroPelea}=============\n");
+        muestraPersonaje(peleador2);
+        aplicaBonus(peleador2);
         //PersonajesContinuan.Add(peleador2);
         //eliminaPersonaje(peleador2);
+        Console.WriteLine("\n***Perdedor del combate***");
+        muestraPersonaje(peleador1);
         eliminaPersonaje(peleador1);
-    }else
+        return;
+    }
+    else
     {
         Console.WriteLine("\n******Se produjo un empate*****\n");
         Console.WriteLine("Los competidores volveran a realizar los combates hasta que uno sea derrotado >:-)");
@@ -375,11 +396,32 @@ void Combates(Personaje peleador1, Personaje peleador2, int numeroPelea)
 double danioProvoca(Personaje DaGolpe, Personaje RecibeGolpe)
 {
     double danio = ((DaGolpe.valorAtaque() * DaGolpe.efectividaDisparo()) - RecibeGolpe.poderDefensa()) / DaGolpe.maximoDanio;
-    return danio * 100;
+    return Math.Round(danio,3);
 }
 
 void eliminaPersonaje(Personaje personajeElimina)
 {
     //Personaje personajeAEliminar = personajes[personajeElimina];
     personajes.Remove(personajeElimina);
+}
+
+void aplicaBonus(Personaje campeon)
+{
+    double salud, fuerzaMejorada, velocidadMejorada;
+    if(campeon.GetSalud() < 50) //En caso de tener menos de la mitad de la vida se le da un bonus de 20 puntos de vida mas
+    {
+        salud = campeon.GetSalud() + 20;
+        campeon.SetSalud(salud);
+    }
+
+    fuerzaMejorada = campeon.GetFuerza() + (campeon.GetFuerza() * 5) / 100;  //Tiene un incremento del 5% en la fuerza del personaje
+    campeon.SetFuerza(fuerzaMejorada);
+
+    if(campeon.GetNivel() < 10)  //En caso de no haber llegado al maximo nivel, se le incrementa 1 nivel mas, y con ello mejora el poder de disparo y por lo tanto el valor del ataque
+    {
+        campeon.SetNivel(campeon.GetNivel() + 1);
+    }
+
+    velocidadMejorada = campeon.GetVelocidad() + (campeon.GetVelocidad() * 10) / 100; //Tiene un incremento del 10% en la velocidad y por lo tanto un pequeño incremento al defenderse
+    campeon.SetVelocidad(velocidadMejorada);
 }

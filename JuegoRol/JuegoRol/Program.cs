@@ -20,7 +20,7 @@ int main()
                         "mientras que el perdedor sera elimindo completamente del torneo.\n");
 
 
-    if (menu(path, formato) == 1)
+    if (menu(path, formato) == 2)
     {
         Personaje personajePersonal = creaPersonajeManual();
         //Personaje personajeAleatorio;
@@ -38,7 +38,7 @@ int main()
         Console.WriteLine("Los personajes se crearon correctamente.");
 
     }
-    else if(menu(path, formato) == 0)
+    else if(menu(path, formato) == 1)
     {
         //Personaje personajeAleatorio;
         while (personajes.Count() < 10)
@@ -100,15 +100,16 @@ int menu(string path, string formato)
     int opcion;
     Console.WriteLine("********Taberna de la Eleccion********\n");
     do{
-        Console.WriteLine("0-> Desea que el programa le escoja aleatoriamente la creacion del personaje.\n");
-        Console.WriteLine("1-> Desea crear manualmente a su personaje.\n");
+        Console.WriteLine("1-> Desea que el programa le escoja aleatoriamente la creacion del personaje.\n");
+        Console.WriteLine("2-> Desea crear manualmente a su personaje.\n");
         if(File.Exists(path+formato))
         {
-            Console.WriteLine("2-> Desea que se carguen los personajes almacenados anteriormente.\n");
+            Console.WriteLine("3-> Desea que se carguen los personajes almacenados anteriormente.\n");
         }
         Console.WriteLine("Ingrese una opcion:");
         opcion = Convert.ToInt32(Console.ReadLine());
-    }while(opcion < 0 || opcion > 2);
+    }while(opcion <= 0 || opcion > 3);
+
     return opcion;
 }
 
@@ -443,6 +444,7 @@ void aplicaBonus(Personaje campeon)
     campeon.SetVelocidad(velocidadMejorada);
 }
 
+//Funciones para manejo de archivos json
 void cargaDesdeJson(string elementosJson)
 {
     List<Personaje> lista = JsonConvert.DeserializeObject<List<Personaje>>(elementosJson);
